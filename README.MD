@@ -9,4 +9,16 @@ This is the tutorial that you can find on the AWS [official documentation](https
   3. the settings of network ACLs in a VPC where the EC2 resides  
 
 ## Success Screenshot  
-![success](./success_deployment.jpg)
+![success](./success_deployment.jpg)  
+
+## Launch Instance
+```sh
+aws ec2 run-instances \
+  --image-id ${AMI ID} \
+  --key-name ${key-pair name} \
+  --user-data file://instance-setup.sh \
+  --count 1 \
+  --instance-type t2.micro \
+  --iam-instance-profile Name={instance profile name} \
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=CodeDeployDemo}]'
+```
